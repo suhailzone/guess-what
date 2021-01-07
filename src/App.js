@@ -7,17 +7,14 @@ import {
   AiFillPlayCircle,
   AiOutlineReload,
 } from "react-icons/ai";
-import { FaQuestionCircle } from "react-icons/fa";
-import crying from "./images/crying.png";
-import dashing from "./images/dashing.png";
-import fear from "./images/fear.png";
-import laugh from "./images/laugh.png";
-import love from "./images/love.png";
-import sad from "./images/sad.png";
-import sleeping from "./images/sleeping.png";
-import tongue from "./images/tongue-out.png";
-import wink from "./images/wink.png";
-import unamused from "./images/unamused.png";
+import {
+  FaQuestionCircle,
+  FaGithub,
+  FaFacebookF,
+  FaWhatsapp,
+  FaSnapchatGhost,
+  FaInstagram,
+} from "react-icons/fa";
 
 // const itemArray = new Array(9).fill("empty");
 const allItems = [
@@ -47,41 +44,41 @@ const shuffle = () => {
   itemArray = itemArray.sort(() => Math.random() - 0.5);
 };
 shuffle();
-const getItem = (item) => {
-  switch (item) {
-    case "crying":
-      return crying;
+// const getItem = (item) => {
+//   switch (item) {
+//     case "crying":
+//       return crying;
 
-    case "sad":
-      return sad;
+//     case "sad":
+//       return sad;
 
-    case "wink":
-      return wink;
+//     case "wink":
+//       return wink;
 
-    case "dashing":
-      return dashing;
+//     case "dashing":
+//       return dashing;
 
-    case "fear":
-      return fear;
+//     case "fear":
+//       return fear;
 
-    case "laugh":
-      return laugh;
+//     case "laugh":
+//       return laugh;
 
-    case "love":
-      return love;
+//     case "love":
+//       return love;
 
-    case "sleeping":
-      return sleeping;
-    case "tongue":
-      return tongue;
+//     case "sleeping":
+//       return sleeping;
+//     case "tongue":
+//       return tongue;
 
-    case "unamused":
-      return unamused;
+//     case "unamused":
+//       return unamused;
 
-    default:
-      break;
-  }
-};
+//     default:
+//       break;
+//   }
+// };
 
 function App() {
   const [start, setStart] = useState(false);
@@ -139,6 +136,22 @@ function App() {
     setStart(false);
   };
 
+  const getIcon = (name) => {
+    switch (name) {
+      case "dashing":
+        return <FaFacebookF size="large" color="#4269f7" />;
+      case "sleeping":
+        return <FaWhatsapp size="large" color="#24ad25" />;
+      case "love":
+        return <FaSnapchatGhost size="large" color="#e7e401" />;
+      case "laugh":
+        return <FaInstagram size="large" color="#ef2a68" />;
+
+      default:
+        break;
+    }
+  };
+
   return (
     <Container className="p-2">
       <h1 className="text-center text-white">Guess What?</h1>
@@ -176,12 +189,13 @@ function App() {
                   <Card key={index} onClick={() => handleToggle(item, index)}>
                     <CardBody className="box">
                       {item.isSelected ? (
-                        <img
-                          alt={item.title}
-                          src={getItem(item.title)}
-                          length={"large"}
-                          width={100}
-                        />
+                        // <img
+                        //   alt={item.title}
+                        //   src={getItem(item.title)}
+                        //   length={"large"}
+                        //   width={100}
+                        // />
+                        <Fragment>{getIcon(item.title)}</Fragment>
                       ) : (
                         <FaQuestionCircle size="large" />
                       )}
@@ -201,6 +215,19 @@ function App() {
           </Row>
         </Fragment>
       )}
+      <Row>
+        <Col md={6} className="offset-md-3 mt-3">
+          <Button block outline={true}>
+            <FaGithub style={{ margin: "0 10px" }} />
+            <a
+              href="https://www.github.com/suhailzone"
+              className="mt-2 text-white text-center"
+            >
+              github.com/suhailzone
+            </a>
+          </Button>
+        </Col>
+      </Row>
     </Container>
   );
 }
